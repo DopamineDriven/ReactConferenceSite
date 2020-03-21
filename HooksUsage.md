@@ -1,4 +1,0 @@
-# useContext
-# useReducer
-# useCallback
-# useMemo
