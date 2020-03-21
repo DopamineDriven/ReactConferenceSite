@@ -3,7 +3,7 @@
     - Using hooks replaces a lot of "ceremony"
     - React class components had to be used pre-Hooks
     - Hooks allows the use of functional components
-    - Less is mroe
+    - Less is more
     - Hooks/Functional components = a better React paradigm
 
 ### Initial Content Setup Source
