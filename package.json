@@ -1,0 +1,34 @@
+{
+  "name": "reactconferencesite",
+  "version": "1.0.0",
+  "description": "React Hooks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DopamineDriven/ReactConferenceSite.git"
+  },
+  "keywords": [
+    "next",
+    "react",
+    "react-dom",
+    "react",
+    "hooks"
+  ],
+  "author": "Andrew Ross",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DopamineDriven/ReactConferenceSite/issues"
+  },
+  "homepage": "https://github.com/DopamineDriven/ReactConferenceSite#readme",
+  "dependencies": {
+    "next": "^9.3.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
