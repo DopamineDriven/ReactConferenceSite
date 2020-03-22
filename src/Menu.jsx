@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
 
+// does the routing between the two pages
 export class Menu extends Component {
     render() {
         return (

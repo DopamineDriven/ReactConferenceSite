@@ -1,12 +1,14 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext} from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../static/site.css";
 import { Header } from "../src/Header";
 import { Menu } from "../src/Menu";
-import SpeakerData from "./SpeakerData";
-import SpeakerDetail from "./SpeakerDetail";
+import SpeakerData from "./SpeakerData.js";
+import SpeakerDetail from "./SpeakerDetail.jsx";
+import { ConfigContext } from './App.jsx';
 
+// four useState calls
 const Speakers = ({}) => {
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
@@ -14,6 +16,12 @@ const Speakers = ({}) => {
   const [speakerList, setSpeakerList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // reference to context with useContext Hook
+  const context = useContext(ConfigContext);
+
+
+  // useEffect simulates calling an outside service with a 1 second delay
+  // on completion, filters and sorts data ready to be rendered
   useEffect(() => {
     setIsLoading(true);
     new Promise(function(resolve) {
@@ -77,6 +85,7 @@ const Speakers = ({}) => {
       <Menu />
       <div className="container">
         <div className="btn-toolbar  margintopbottom5 checkbox-bigger">
+          {context.showSpeakerSpeakingDays === false ? null : (
           <div className="hide">
             <div className="form-check-inline">
               <label className="form-check-label">
@@ -101,6 +110,7 @@ const Speakers = ({}) => {
               </label>
             </div>
           </div>
+          )}
         </div>
         <div className="row">
           <div className="card-deck">

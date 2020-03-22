@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import './src.css'
+import '../static/site.css';
+import { ConfigContext } from './App.jsx';
 
+// rewrite with some added features of simple input field and button from previous activity
 const SignMeUp = ({ signUpCallback }) => {
     useEffect(() => {
         console.log(`SignMeUp:useEffect called`)
@@ -11,7 +13,13 @@ const SignMeUp = ({ signUpCallback }) => {
     const [email, setEmail] = useState();
     const [emailValid, setEmailValid] = useState(false);
     const [sendProcessing, setSendProcessing] = useState(false);
-
+    // get a reference to context
+    const context = useContext(ConfigContext);
+    
+    // on every keystroke the validate email function is called
+    // validate email utilizes regex to ensure that a correct email is input
+    // before the click event for the submit button becomes accessible to the user
+    // when valid email valid state gets set to true 
     const validateEmail = email => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return (
@@ -23,6 +31,7 @@ const SignMeUp = ({ signUpCallback }) => {
         toast.info(`You will be notified of upcoming events ${email}`)
     }
 
+    // send email to backend function that runs for 1000ms (1second) then pops up a post message with a completion status 
     const sendEmailToBackend = () => {
         setSendProcessing(true)
         new Promise ((resolve) => {
@@ -39,8 +48,11 @@ const SignMeUp = ({ signUpCallback }) => {
     }
 
     const buttonText = sendProcessing ? "processing..." : "Get Updates";
-
-    return (
+    // in return (rather than render, since it's a functional component),
+    // check the flag and if the flag is false don't render signup
+    // hence, the Enter Email form and get updates button is gone!
+    // setting this to true in app at the source once more will restore the signup
+    return context.showSignMeUp === false ? null : (
         <div className="container">
           <div>
             <ToastContainer />
@@ -69,7 +81,7 @@ const SignMeUp = ({ signUpCallback }) => {
             </div>
           </div>
         </div>
-      );
+      )
     };
     
 

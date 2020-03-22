@@ -1,5 +1,5 @@
 import ImageToggleOnScroll from './ImageToggleOnScroll.jsx';
-
+// when useEffect completes in Speaker.jsx and the data is ready to be rendered, each object is rendered with another component
 const SpeakerDetail = ({
     id,
     firstName,

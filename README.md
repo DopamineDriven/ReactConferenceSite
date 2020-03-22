@@ -9,6 +9,20 @@
 ### Initial Content Setup Source
 - Peter Kellner's React Hooks course on pluralsight.com
 
+## Pages
+- Two pages
+    - index.jsx
+    - speakers.jsx
+- These pages call common App.jsx functional component that handles the routing to go between the pages. 
+
+## React v16.3.0 March 29, 2018
+- React team shipped new Context API to make accessing data very simple and straightforward
+    - without this, prop drilling and HOCs were prevalent (ugly)
+    - useContext Hook allows one to access data in any functional components without any unnatural acts
+    - Creating wrapping tags in render events that have nothing to do with the UI become obsolete 
+    - storing configurational information in your app and having it available in any functional component you want 
+    
+
 # Silicon Valley Code Camp (SVCC)
 - Silicon Valley Code Camp is a two-day technical conference in Silicon Valley where developers learn from developers focusing on open source, the latest enterprise-focused technologies, software branding, legal issues around software as well as other topics developers are interested in hearing about such as career building and more.
 

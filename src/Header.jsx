@@ -1,6 +1,8 @@
 import React from 'react';
 import SignMeUp from './SignMeUp.jsx';
 
+// nice logo and includes sign-up component
+
 export const Header = () => {
     const signupCallBack = email => {
         return (
