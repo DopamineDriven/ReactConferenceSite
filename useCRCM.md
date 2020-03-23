@@ -41,3 +41,5 @@
 
 ## useMemo
 - caches a value 
+- memoizing values
+- caches data on client saving compute time in the app and making it more responsive
