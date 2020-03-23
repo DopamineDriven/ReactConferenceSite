@@ -17,7 +17,7 @@ const pageToShow = pageName => {
 // theoretically we plan on being able to access this attribute value from 
 // any component that is below App on the tree
 const configValue = {
-    showSignMeUp: false,
+    showSignMeUp: true,
     showSpeakerSpeakingDays: true
 };
 

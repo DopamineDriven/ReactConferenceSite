@@ -1,6 +1,9 @@
 import ImageToggleOnScroll from './ImageToggleOnScroll.jsx';
 // when useEffect completes in Speaker.jsx and the data is ready to be rendered, each object is rendered with another component
-const SpeakerDetail = ({
+// need to memoize what speakerdetail page is returning
+// use the React.memo call, not to be confused with the hook, useMemo
+// this returns a cached, or memoized, form of speakerdetail to the calling component in speakers
+const SpeakerDetail = React.memo(({
     id,
     firstName,
     lastName,
@@ -8,6 +11,7 @@ const SpeakerDetail = ({
     bio,
     onHeartFavoriteHandler
 }) => {
+    console.log(`SpeakerDetail:${id} ${firstName} ${lastName} ${favorite}`);
     return (
         <div className="card col-4 cardmin">
             <ImageToggleOnScroll  
@@ -35,6 +39,6 @@ const SpeakerDetail = ({
             </div>
         </div>
     )
-};
+});
 
 export default SpeakerDetail;
