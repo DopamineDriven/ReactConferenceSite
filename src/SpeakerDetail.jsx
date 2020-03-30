@@ -1,5 +1,6 @@
 import ImageToggleOnScroll from './ImageToggleOnScroll.jsx';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ConfigContext } from './App.jsx';
 // when useEffect completes in Speaker.jsx and the data is ready to be rendered, each object is rendered with another component
 // need to memoize what speakerdetail page is returning
 // use the React.memo call, not to be confused with the hook, useMemo
@@ -14,6 +15,7 @@ const SpeakerDetail = React.memo(({
     bio,
     onHeartFavoriteHandler
 }) => {
+    const context = useContext(ConfigContext)
     console.log(`SpeakerDetail:${id} ${firstName} ${lastName} ${favorite}`);
     return (
         <div className="card col-4 cardmin">
@@ -25,9 +27,10 @@ const SpeakerDetail = React.memo(({
             />
             <div className="card-body">
                 <h4 className="card-title">
+                    {context.loggedInUserEmail ? (
                     <button 
                         data-sessionid={id}
-                        className={`${favorite ? "heartbutton" : "heartdarkbutton"}`}
+                        className={favorite ? "heartredbutton" : "heartdarkbutton"}
                         onClick={e => {
                             onHeartFavoriteHandler(e, {
                                 id,
@@ -40,6 +43,7 @@ const SpeakerDetail = React.memo(({
                             })
                         }} 
                     />
+                    ) : null}
                     <span>
                         {firstName} {lastName}
                     </span>

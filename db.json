@@ -67,10 +67,10 @@
       "id": 18805,
       "firstName": "Mickey W.",
       "lastName": "Mantle",
-      "sat": true,
-      "sun": true,
       "favorite": false,
-      "bio": "Mickey has been developing software systems and products for over 40 years, as a systems programmer, Tech Lead, Manager, VP Engineering, CTO, COO, and now CEO/CTO of his own company."
+      "bio": "Mickey has been developing software systems and products for over 40 years, as a systems programmer, Tech Lead, Manager, VP Engineering, CTO, COO, and now CEO/CTO of his own company.",
+      "sat": true,
+      "sun": true
     },
     {
       "id": 8367,
