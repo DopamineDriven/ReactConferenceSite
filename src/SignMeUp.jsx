@@ -51,6 +51,20 @@ const SignMeUp = ({ signUpCallback }) => {
     const buttonText = sendProcessing ? "processing..." : "Get Updates";
     
     // console.log('src/SignMeUp called')
+    // check to see if user is logged in
+    // if so, output email address and a logout button
+    if (context.loggedInUserEmail) {
+      return (
+        <div className="container">
+          <div className="content">
+            <span>
+              Logged in User Email: {context.loggedInUserEmail}&nbsp;&nbsp;
+            </span>
+            <a href="/logout">Logout</a>
+          </div>
+        </div>
+      )
+    }
 
     return context.showSignMeUp === false ? null : (
         <div className="container">
@@ -78,11 +92,13 @@ const SignMeUp = ({ signUpCallback }) => {
               >
                 {buttonText}
               </button>
+              &nbsp;&nbsp;<a href='/login'>Login</a>
             </div>
           </div>
         </div>
       )
     };
     
+    // added a login button (above) for user to readily log in
 
 export default SignMeUp;
