@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "json-server": "json-server --watch db.json --port 4000 --delay 500"
   },
   "repository": {
     "type": "git",
