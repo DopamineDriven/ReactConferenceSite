@@ -18,7 +18,8 @@ const pageToShow = pageName => {
 // any component that is below App on the tree
 const configValue = {
     showSignMeUp: true,
-    showSpeakerSpeakingDays: true
+    showSpeakerSpeakingDays: true,
+    loggedInUserEmail: "andrew@test.com"
 };
 
 // wrap pageToShow with ConfigContext.Provider

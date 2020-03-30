@@ -31,7 +31,8 @@ const SignMeUp = ({ signUpCallback }) => {
         toast.info(`You will be notified of upcoming events ${email}`)
     }
 
-    // send email to backend function that runs for 1000ms (1second) then pops up a post message with a completion status 
+    // send email to backend function that runs for 1000ms (1second) 
+    // then pops up a post message with a completion status 
     const sendEmailToBackend = () => {
         setSendProcessing(true)
         new Promise ((resolve) => {
@@ -48,10 +49,9 @@ const SignMeUp = ({ signUpCallback }) => {
     }
 
     const buttonText = sendProcessing ? "processing..." : "Get Updates";
-    // in return (rather than render, since it's a functional component),
-    // check the flag and if the flag is false don't render signup
-    // hence, the Enter Email form and get updates button is gone!
-    // setting this to true in app at the source once more will restore the signup
+    
+    // console.log('src/SignMeUp called')
+
     return context.showSignMeUp === false ? null : (
         <div className="container">
           <div>
