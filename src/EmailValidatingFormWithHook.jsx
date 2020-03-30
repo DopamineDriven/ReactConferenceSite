@@ -4,29 +4,32 @@ import useInterval from "./useInterval.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../static/site.css";
 
-function EmailValidatingForm() {
-
-  const validateEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  };
-
-  const [emailValid, setEmailValid] = useState(false);
-  const reducer = (state,action) => {
-    setEmailValid(validateEmail(state));
-    return action;
-  };
-  const [email,setEmail] = useReducer(reducer,"");
-
-  const secondsFormValidFor = 10;
-  const [count, setCount] = useState(secondsFormValidFor);
-  useInterval(
+function EmailValidatingFormWithHook() {
+  const useTimeoutForm = secondsFormValidFor => {
+    const [count, setCount] = useState(secondsFormValidFor);
+    useInterval(
       () => {
         setCount(count - 1);
       },
       count > 0 ? 1000 : null
-  );
+    );
 
+    const validateEmail = email => {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    };
+
+    const [emailValid, setEmailValid] = useState(false);
+    const reducer = (state, action) => {
+      setEmailValid(validateEmail(state));
+      return action;
+    };
+    const [email, setEmail] = useReducer(reducer, "");
+
+    return { count, email, setEmail, emailValid };
+  };
+
+  const { count, email, setEmail, emailValid } = useTimeoutForm(10);
 
   return (
     <div className="container">
@@ -63,4 +66,4 @@ function EmailValidatingForm() {
   );
 }
 
-export default EmailValidatingForm;
+export default EmailValidatingFormWithHook;
