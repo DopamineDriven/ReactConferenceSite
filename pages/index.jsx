@@ -1,5 +1,6 @@
 import React from "react";
 import App from "../src/App";
+import ls from "local-storage";
 
 const Index = ({ user, isServer }) => {
     const isBrowser = typeof window !== "undefined";

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../static/site.css";
-import { Header } from "./Headerjsx";
+import { Header } from "./Header.jsx";
 import { Menu } from "./Menu.jsx";
 
-const Login = () => {
+const Index = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
@@ -58,5 +58,5 @@ const Login = () => {
     );
   };
   
-  export default Login;
+  export default Index;
   
