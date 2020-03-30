@@ -1,4 +1,5 @@
 import ImageToggleOnScroll from './ImageToggleOnScroll.jsx';
+import React from 'react';
 // when useEffect completes in Speaker.jsx and the data is ready to be rendered, each object is rendered with another component
 // need to memoize what speakerdetail page is returning
 // use the React.memo call, not to be confused with the hook, useMemo
@@ -7,6 +8,8 @@ const SpeakerDetail = React.memo(({
     id,
     firstName,
     lastName,
+    sat,
+    sun,
     favorite,
     bio,
     onHeartFavoriteHandler
@@ -26,7 +29,15 @@ const SpeakerDetail = React.memo(({
                         data-sessionid={id}
                         className={`${favorite ? "heartbutton" : "heartdarkbutton"}`}
                         onClick={e => {
-                            onHeartFavoriteHandler(e, !favorite)
+                            onHeartFavoriteHandler(e, {
+                                id,
+                                firstName,
+                                lastName,
+                                favorite,
+                                bio,
+                                sat,
+                                sun
+                            })
                         }} 
                     />
                     <span>

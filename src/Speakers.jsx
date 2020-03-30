@@ -1,19 +1,17 @@
 import React, { 
   useState, 
-  useEffect, 
   useContext, 
-  useReducer, 
   useCallback, 
   useMemo 
 } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../static/site.css";
-import { Header } from "../src/Header";
-import { Menu } from "../src/Menu";
-import SpeakerData from "./SpeakerData.js";
+import { Header } from "./Header";
+import { Menu } from "./Menu";
 import SpeakerDetail from "./SpeakerDetail.jsx";
 import { ConfigContext } from './App.jsx';
 import UseAxiosFetch from './UseAxiosFetch.jsx';
+import axios from 'axios';
 
 // four useState calls
 const Speakers = ({}) => {
@@ -30,38 +28,6 @@ const Speakers = ({}) => {
 
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
-
-// const [speakerList, setSpeakerList] = useState([]);
-// create a switch statement based on the passed in action type 
-// if action type is setSpeakerList, then the reducer returns action.data
-// as the new state
-// else, by default, have the reducer return the current state of whatever was passed in
-const speakersReducer = (state, action) => {
-    const updateFavorite = (favoriteValue) => {
-        return state.map((item, index) => {
-            if(item.id === action.sessionId) {
-                item.favorite = favoriteValue
-                return item
-            }
-            return item
-        })
-    }
-    switch (action.type) {
-        case "setSpeakerList": {
-            return action.data
-        }
-        // making a common function above in speakerReducer to call below (updateFavorite)
-        case "favorite": {
-            return updateFavorite(true)
-        }
-        case "unfavorite": {
-            return updateFavorite(false)
-        }
-        default:
-            return state
-    }
-};
-
 // make reducer more practical and most importantly, more extensible 
   // const [speakerList, dispatch] = useReducer(speakersReducer, [])
   // const [isLoading, setIsLoading] = useState(true)
@@ -131,8 +97,21 @@ const speakersReducer = (state, action) => {
         return 0;
       })
     [speakingSaturday, speakingSunday, data]
-    )
+  )
+
   const speakerListFiltered = isLoading ? [] : newSpeakerList;
+
+  // use hasErrored from UseAxiosFetch
+  // if there is an error, don't return an empty array
+  // instead render an error message
+  // perhaps the cause of the error is that you failed to start json-server
+  if (hasErrored) {
+    return (
+      <div>
+        {errorMessage}&nbsp;"Ensure that you have launched 'npm run json-server' in terminal"
+      </div>
+    )
+  }
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -172,7 +151,7 @@ const speakersReducer = (state, action) => {
         <div className="row">
           <div className="card-deck">
             {speakerListFiltered.map(
-              ({ id, firstName, lastName, bio, favorite }) => {
+              ({ id, firstName, lastName, sat, sun, bio, favorite }) => {
                 return (
                   <SpeakerDetail
                     key={id}
@@ -182,6 +161,8 @@ const speakersReducer = (state, action) => {
                     firstName={firstName}
                     lastName={lastName}
                     bio={bio}
+                    sat={sat}
+                    sun={sun}
                   />
                 );
               }
