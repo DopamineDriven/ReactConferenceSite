@@ -28,6 +28,7 @@
   "homepage": "https://github.com/DopamineDriven/ReactConferenceSite#readme",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "next": "^9.3.1",
     "react": "^16.13.1",
