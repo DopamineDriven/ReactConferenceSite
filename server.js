@@ -53,6 +53,19 @@ app1
         app.use(passport.initialize());
         app.use(passport.session());
 
+        app.post(
+            "/login",
+            passport.authenticate("local", { failureRedirect: "/login" }),
+            function(req, res) {
+                res.redirect("/");
+            }
+        );
+      
+        app.get("/logout", (req, res) => {
+            req.logout();
+            res.redirect("/");
+        });
+
 
         app.get("*", (request, response) => {
             return handle(request, response)
