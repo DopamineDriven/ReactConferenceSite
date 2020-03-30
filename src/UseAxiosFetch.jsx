@@ -29,7 +29,9 @@ const DataFetchReducer = (state, action) => {
             };
         // replace data
         case "REPLACE_DATA":
-        // record passed (state.data) must have the attribute "id"    
+        // record passed (state.data) must have the attribute "id" 
+        // that is, replacing one record in data that is already loaded
+        // PUT   
         const newData = state.data.map(rec => {
                 return rec.id === action.replacerecord.id ? action.replacerecord : rec
             });
@@ -45,8 +47,10 @@ const DataFetchReducer = (state, action) => {
     }
 };
 
+// need to pass in data that will be returned immediately 
 const UseAxiosFetch = (initialUrl, initialData) => {
     const [url] = useState(initialUrl);
+    // returns state values isLoading, hasErrored, errorMessage, and data
     const [state, dispatch] = useReducer(DataFetchReducer, {
         isLoading: false,
         hasErrored: false,
@@ -56,10 +60,12 @@ const UseAxiosFetch = (initialUrl, initialData) => {
 
     useEffect(() => {
         let didCancel = false;
-
+        // follow state diagram
+        // first, dispatch to reducer, init
         const fetchData = async () => {
             dispatch({ type: "FETCH_INIT" });
-
+            // then, in a try-catch, axios issues async call 
+            // to fetch data from url and await results
             try {
                 let result = await axios.get(url);
                 if (!didCancel) {
