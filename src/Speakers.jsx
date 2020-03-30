@@ -13,7 +13,6 @@ import { ConfigContext } from './App.jsx';
 import UseAxiosFetch from './UseAxiosFetch.jsx';
 import axios from 'axios';
 
-// four useState calls
 const Speakers = ({}) => {
 
   // invoke UseAxiosFetch
@@ -73,15 +72,22 @@ const Speakers = ({}) => {
   };
 // replacing setSpeakerList call with a dispatch call that requires an action type 
 // memoized heartFavoriteHandler via useCallback so that React won't re-render it
-  const heartFavoriteHandler = useCallback((e, favoriteValue) => {
+  const heartFavoriteHandler = useCallback((e, speakerRec) => {
     e.preventDefault();
-    const sessionId = parseInt(e.target.attributes["data-sessionid"].value);
-    // adding a dispatch invocation to heartFavoriteHandler
-    dispatch({
-        type: favoriteValue === true ? "favorite" : "unfavorite",
-        sessionId
-        });
-    }, []);
+    // utilize ECMA6 spread operator to create speakerRec with
+    // favorite boolean value toggled 
+    const toggledRec = { ...speakerRec, favorite: !speakerRec.favorite };
+    // then do an axios PUT of toggledRec to REST server
+    // on completion call the method updateDataRecord
+    axios.put(`http://localhost:4000/speakers/${speakerRec.id}`, toggledRec)
+      .then((res) => {
+        updateDataRecord(toggledRec)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }, 
+  []);
 
   const newSpeakerList = useMemo(() => data
     .filter(
