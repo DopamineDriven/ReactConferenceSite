@@ -97,7 +97,7 @@ const Speakers = ({}) => {
           }
           return 0;
         }),
-        [(speakingSaturday, speakingSunday, data)]
+        [speakingSaturday, speakingSunday, data]
   );
 
   const speakerListFiltered = isLoading ? [] : newSpeakerList;
