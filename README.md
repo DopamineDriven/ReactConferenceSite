@@ -1,4 +1,7 @@
 # ReactConferenceSite
+## Next.js
+- behind the scenes launching a Node.js web server with webpack as the bundler builder
+
 ## Authentication and Verification
 - Authentication makes no attempt to verify "good guy" connecting, just "same guy"
     - same bad guy back again 
