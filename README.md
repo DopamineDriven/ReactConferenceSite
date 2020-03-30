@@ -1,4 +1,8 @@
 # ReactConferenceSite
+## Authentication and Verification
+- Authentication makes no attempt to verify "good guy" connecting, just "same guy"
+    - same bad guy back again 
+
 ## Using React Hooks to declaratively create functionality
     - Using hooks replaces a lot of "ceremony"
     - React class components had to be used pre-Hooks
